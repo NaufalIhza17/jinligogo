@@ -8,8 +8,8 @@ export default function Versatile() {
   return (
     <section className="w-full bg-white bg-review bg-center py-[140px] px-20">
       <div className="layout grid gap-[72px]">
-        <div className="flex justify-between">
-          <h1 className="font-semibold text-[#101010] text-2xl">
+        <div className="flex justify-between gap-10">
+          <h1 className="font-semibold text-[#101010] text-2xl min-w-max">
             <span className="text-[#FF8A00]">/ </span>Versatile Opening Options
           </h1>
           <p className="font-medium text-[28px] text-[#101010] max-w-[685px]">

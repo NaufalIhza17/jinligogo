@@ -1,18 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { featuresData } from "@/data/staticData";
 import Image from "next/image";
+import useWindowWidth from "@/hooks/useWindowWidth";
 
 const inter = Inter({ subsets: ["latin"] });
 const plusjakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export default function Features() {
+  const windowWith = useWindowWidth();
+  const [isShort, setIsShort] = useState(false);
+  const [isOpenArray, setIsOpenArray] = useState(featuresData.map(() => false));
+  const changeIsOpen = (index: number) => {
+    const updatedIsOpenArray = [...isOpenArray];
+    updatedIsOpenArray[index] = !updatedIsOpenArray[index];
+    setIsOpenArray(updatedIsOpenArray);
+  };
+
+  useEffect(() => {
+    if (windowWith <= 1320) {
+      setIsShort(true);
+    } else {
+      setIsShort(false);
+    }
+  }, [windowWith]);
+
   return (
     <section className="w-full bg-white bg-review bg-center pt-[140px] pb-14 px-20">
       <div className="layout">
-        <div className="flex justify-between gap-[77px]">
+        <div className="flex justify-between gap-[clamp(2.5rem,-3.192rem+8.894vw,4.813rem)]">
           <h1 className="font-semibold text-[#101010] text-2xl min-w-max">
             <span className="text-[#FF8A00]">/ </span>superior features
           </h1>
@@ -34,30 +52,33 @@ export default function Features() {
             </div>
             <div className="grid border-b border-[#EDEDED]">
               {featuresData.map((data, idx) => {
-                const [isOpen, setIsOpen] = useState(false);
-                const changeIsOpen = () => {
-                  setIsOpen(!isOpen);
-                };
+                const isOpen = isOpenArray[idx];
                 return (
                   <div
                     key={idx}
                     className={`py-10 grid border-t ${
                       isOpen ? "border-[#101010]" : "border-[#EDEDED]"
                     }`}
-                    onClick={() => changeIsOpen()}
+                    onClick={() => changeIsOpen(idx)}
                   >
                     <div
-                      className={`flex justify-between items-center ${
-                        isOpen ? "text-[#101010]" : "text-[#5E626E]"
-                      }`}
+                      className={`flex justify-between gap-3  ${
+                        isShort ? "flex-col items-start" : "items-center"
+                      } ${isOpen ? "text-[#101010]" : "text-[#5E626E]"}`}
                     >
                       <div className="flex items-center gap-3">
                         <p className={`${plusjakarta.className} font-bold`}>
                           {data.number}
                         </p>
-                        <p className="font-bold text-[28px]">{data.title}</p>
+                        <p className="font-bold text-[28px] min-w-max">
+                          {data.title}
+                        </p>
                       </div>
-                      <p className={`${inter.className} max-w-[476px] text-lg`}>
+                      <p
+                        className={`${inter.className} ${
+                          !isShort && "max-w-[476px]"
+                        } text-lg`}
+                      >
                         {data.desc}
                       </p>
                     </div>

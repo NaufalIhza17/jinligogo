@@ -8,9 +8,14 @@ export default function Upgrade() {
           Upgrade your bathroom for a fresh, stylish vibe.
         </h2>
         <div className="flex flex-col gap-6 my-[140px]">
-          {upgradeData.map((data, idx) => (
-            <div className="w-[309px] py-4 bg-white/80 rounded-full text-center hover:scale-110 group hover:bg-[#8A95A6] transition-all">
-              <p className="font-medium text-[#8E8E8E] group-hover:text-white">{data}</p>
+          {upgradeData.map((data) => (
+            <div
+              key={data}
+              className="w-[309px] py-4 bg-white/80 rounded-full text-center hover:scale-110 group hover:bg-[#8A95A6] transition-all"
+            >
+              <p className="font-medium text-[#8E8E8E] group-hover:text-white">
+                {data}
+              </p>
             </div>
           ))}
         </div>

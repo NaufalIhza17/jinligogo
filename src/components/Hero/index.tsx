@@ -29,7 +29,7 @@ export default function Hero() {
             <div className="grid gap-4">
               <h2 className="text-xl font-bold">About this item</h2>
               <p className={inter.className}>
-                We are confident you'll think we have the best Bathroom Trash
+                We are confident you&apos;ll think we have the best Bathroom Trash
                 Can on the market and that we make every order with a full
                 money-back guarantee. Your 100%{" "}
               </p>
