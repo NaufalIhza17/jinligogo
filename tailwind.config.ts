@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,10 +10,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        satoshi: ["Satoshi", ...fontFamily.sans],
+        gilroy: ["Gilroy", ...fontFamily.sans],
+        switzer: ["Switzer", ...fontFamily.sans],
+        "general-sans": ["GeneralSans", ...fontFamily.sans],
+      },
+      colors: {
+        "primary-blue": "#8A95A6",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        review: "url('/images/bg-review.png')",
+        upgrade: "url('/images/bg-upgrade.png')",
       },
     },
   },
